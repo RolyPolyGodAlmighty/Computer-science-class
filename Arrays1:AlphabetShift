@@ -1,0 +1,45 @@
+import java.util.*;
+class AlphabetShift {
+    public static void main(String[] args) {
+        // setup
+        Scanner keyboard = new Scanner(System.in);
+        char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        
+        
+        // User input
+        System.out.print("Please give shift amount (a number): ");
+        int shiftAmount = keyboard.nextInt();
+        // Code the shift.
+        // create the new shifted array for the alphabet
+        int offset=0;
+        char[] newAlphabet = new char[alphabet.length];
+        for( int i=0; i<alphabet.length; i++) {
+            offset = i+shiftAmount;
+            newAlphabet[i] = alphabet[offset % (alphabet.length)];
+        }
+        // Print the alphabets
+        System.out.println(Arrays.toString(alphabet));
+        System.out.println(Arrays.toString(newAlphabet));
+
+        // Ask user for word
+        System.out.print("GIB WORD: ");
+        String userWord = keyboard.nextLine();
+        userWord = keyboard.nextLine();
+        // System.out.print("\nYour word was: " + userWord);
+        char[] findOut = new char[userWord.length()];
+        for(int i=0;i<userWord.length(); i++){
+            for(int j=0; j<alphabet.length; j++){
+                findOut[i] = userWord.charAt(i);
+                if (findOut[i] == alphabet[j]) {
+                    System.out.print(newAlphabet[j]);
+                }
+            }
+
+            
+        }
+        
+
+
+
+    }
+}
