@@ -1,0 +1,64 @@
+import java.util.*;
+
+public class Arr2MultiDimAss {
+    public static void main (String[] args) {
+        Scanner k = new Scanner(System.in);
+        
+        // get the square array size
+        System.out.print("Hey, Give me a size for the array: ");
+        int squareSize = k.nextInt(); 
+        int[][] regArr = new int [squareSize][squareSize];  
+        
+        // fill out the Arrays
+        int numero = 1;
+        for (int i=0; i<regArr.length; i++){
+            for (int j=0; j<regArr[i].length; j++) {
+                regArr[i][j] = numero++;
+            }
+        }
+
+        // print out the regular array
+        for (int[] row: regArr) {
+            for (int val1: row) {
+                System.out.print(val1 + " ");
+            }
+            System.out.println();
+        }
+
+        
+
+        // find the trace. I know it's zero.
+        int trace = 0;
+        for (int i=0; i<squareSize; i++) {
+            trace = trace + regArr[i][i];
+        }
+        
+        //blank space
+        System.out.println();
+
+        //print the trace.
+        System.out.println("The trace is: " + trace);
+
+        // transpose the array. 
+        int[][] trans = regArr;
+        for(int i=0; i<trans.length; i++){
+            for(int j=0; j<trans[i].length; j++){
+                System.out.print(trans[j][i] + " ");
+            }
+            System.out.println();
+        }
+        
+        //blank space
+        System.out.println();
+
+        // Spin da Array
+        int[][] spunArr = new int[squareSize+1][squareSize+1];
+        for(int i=squareSize-1; i>-1; i--){
+            for(int j=0; j<squareSize; j++){
+                spunArr[i][squareSize-j] = regArr[j][i];
+                System.out.print(spunArr[i][squareSize-j] + " ");
+            }
+            System.out.println();
+        } 
+    }
+}
