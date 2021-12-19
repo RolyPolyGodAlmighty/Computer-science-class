@@ -1,0 +1,118 @@
+import java.util.*;
+public class FinalProject {
+    public static void main(String[] args){
+        // setup
+        Random random = new Random();
+        Scanner keyboard = new Scanner(System.in);
+        int ps5 = random.nextInt(2700) + 300;
+
+        // users!
+        System.out.print("Hey! let's take a bid on a new PS5!(knockoff). There are four players, make sure to bid well (hint; bidding 0$ will result in death)! Your guess is: ");
+        int user = keyboard.nextInt();
+        if (user <= 0){ 
+            for(int i=1; i!=0; i++){
+                System.out.print("YOUR GUESS IS NOT ABOVE 0, TRY AGAIN: ");
+                user = keyboard.nextInt(); 
+                if (user > 0) {
+                    break;
+                }
+            }
+        }
+        System.out.println("Neat, you made a bid, let's see what the other's bid!");
+        int bidder1 = random.nextInt(2000) + 1000; 
+        int bidder2 = random.nextInt(1999) + 1;
+        int bidder3 = random.nextInt(bidder1 - 500) + (user + 1);
+
+        System.out.println("Okay, so, the bids: \n\tBid1: " + bidder1 + "\n\tBid2: " + bidder2 + "\n\tBid3: " + bidder3 + "\n\tYOU!: " + user); 
+
+        int result1 = ps5 - bidder1;
+        int result2 = ps5 - bidder2;
+        int result3 = ps5 - bidder3;
+        int result4 = ps5 - user;
+
+        System.out.println("Time for the Results! The actual price was $" + ps5 );
+        // Time for some funny business!
+        boolean over1 = false;
+        boolean over2 = false;
+        boolean over3 = false;
+        boolean over4 = false;
+        int overPenalty = 100000000;
+        if (result1 < 0){
+            System.out.print("\n\tResult1: OVER");
+            over1 = true;
+            result1 = overPenalty;
+        } else if (result1 == 0) {
+            System.out.print("\n\tWIN");
+        } else {
+            System.out.print("\n\tResult1: " + result1);
+        }
+
+        if (result2 < 0){
+            System.out.print("\n\tResult2: OVER");
+            over2 = true;
+            result2 = overPenalty;
+        } else if (result2 == 0) {
+            System.out.print("\n\tWIN");
+        } else {
+            System.out.print("\n\tResult2: " + result2);
+        }
+
+        if (result3 < 0){
+            System.out.print("\n\tResult3: OVER");
+            over3 = true;
+            result3 = overPenalty;
+        } else if (result3 == 0) {
+            System.out.print("\n\tWIN");
+        } else {
+            System.out.print("\n\tResult3: " + result3);
+        }
+
+        if (result4 < 0){
+            System.out.print("\n\tResult4: OVER");
+            over4 = true;
+            result4 = overPenalty;
+        } else if (result4 == 0) {
+            System.out.print("\n\tWIN");
+        } else {
+            System.out.print("\n\tYOU!!!!: " + result4);
+        }
+
+        // Label the finalists
+        String finalist = "";
+        int finalVal = 1000000;
+        String finalist2 = "";
+        int finalVal2 = 1000000;
+
+        if (over1 == false && result1 < result2 ) {
+            finalist = "Bidder1";
+            finalVal = result1;
+            System.out.println("\nCongratulations, bidder1, you move on");
+        } else if (over2 == false && result1 > result2) {
+            finalist = "Bidder2";
+            finalVal = result2;
+            System.out.println("\nCongratulations, bidder2, you move on");
+        } else {
+            System.out.println("\nI'm both unsurpirsed, and dissapointed. Neither 1 nor 2 move on.");
+        }
+
+        if (over4 == true) {
+            System.out.println("I...WOW. Neither 3 nor 4 move on.");
+        } else if (over3 == false && result3 < result4) {
+            finalist2 = "bidder3";
+            finalVal2 = result3;
+            System.out.println("Congrats, Mr.3. You move on.");
+        } else {
+            finalist2 = "YOU";
+            finalVal2 = result4;
+            System.out.println("Congrats, YOU. You move on.");
+        }
+
+        if (finalVal < finalVal2) {
+            System.out.println("Congratulations, " + finalist + " You go home with a shiny new PS5!");
+        } else if (finalVal > finalVal2) {
+            System.out.println("Congratulations, " + finalist2 + " You go home with a shiny new PS5!");
+        } else {
+            System.out.println("All of you lose. That ps5? MINE. Your money? MINE. Go home");
+        }
+    }
+}
