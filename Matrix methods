@@ -1,0 +1,205 @@
+
+import java.util.*;
+public class MatrixMethodAss {
+    static Scanner k = new Scanner(System.in);
+    static Random r = new Random();
+    public static void main(String [] args) {
+        boolean cake = false;
+        do{
+            System.out.print("First things first, choose a number, any INTEGER: ");
+            int size = k.nextInt();
+
+            System.out.println("Hello there, would you like to either\n\t1.) Generate an Array\n\t2.) Calculate trace\n\t3.) Transpose an array\n\t4.) Rotate 90* right\n\t5.) Rotate 90* left\n\t6.) GET MEE OOUUUUT!");
+
+            int choice = k.nextInt();
+
+            switch (choice){
+                case 1:
+                    System.out.println("Okay, what kind?\n\t1.) Random\n\t2.) Incremental");
+
+                    int choice1 = k.nextInt();
+
+                    switch (choice1){
+                    case 1://a
+                        System.out.println(Arrays.toString(genArrRan()) + "\n");
+
+                        break;
+                    case 2://a
+                        System.out.println(Arrays.toString(genArrInc()) + "\n");
+
+                        break;
+                    default://a
+                        System.out.println("You're not the smartest, huh? Let's start over\n");
+                        break;
+                    
+                }
+                break;
+                case 2:
+                    System.out.println("Okay, what kind of array do you wanna see the trace of? \n\t1.) An Incremental sqare array\n\t2.) A Random square array\n\t3.) A non-square array");
+
+                    int choice2 = k.nextInt();
+
+                    switch (choice2){
+                    case 1://b
+                        System.out.println(traceOn(genSqMtInc(size)));
+                        break;
+                    case 2://b
+                        System.out.println(traceOn(genSqMtRan(size)));
+                        break;
+                    case 3://b
+                        System.out.print("okay, so this one is special, you have the size, but i need the chonk: ");
+                        int chonk = k.nextInt();
+                        System.out.println(traceOn(noSqArr(size, chonk)));
+                        break;
+                    default:
+                        System.out.print("HAHAHA, FUNNY DUMMY MAN(or woman)");
+                        break;
+                }
+                break;
+                case 3:
+                    System.out.println("Okay, what kind of array do you wanna transpose? \n\t1.) An Incremental sqare array\n\t2.) A Random square array\n\t3.) A non-square array");
+
+                    int choice3 = k.nextInt();
+
+                    switch (choice3){
+                    case 1:
+                        System.out.println(transArr(genSqMtInc(size)));
+                        break;
+                    case 2:
+                        System.out.println(transArr(genSqMtRan(size)));
+                        break;
+                    case 3:
+                        System.out.print("okay, so this one is special, you have the size, but i need the chonk: ");
+                        int chonk = k.nextInt();
+                        System.out.println(transArr(noSqArr(size, chonk)));
+                        break;
+                    default:
+                        System.out.print("HAHAHA, FUNNY DUMMY MAN(or woman)");
+                        break;
+                }
+                break;
+                case 4:
+                    System.out.println("Okay, what kind of array do you wanna rotate? \n\t1.) An Incremental sqare array\n\t2.) A Random square array");
+
+                    int choice4 = k.nextInt();
+                    switch(choice4){
+                    case 1:
+                        System.out.println(rotateR(size, genSqMtInc(size)));
+                        break;
+                    case 2:
+                        System.out.println(rotateR(size, genSqMtRan(size)));
+                        break;
+                    default:
+                        System.out.print("HAHAHA, FUNNY DUMMY MAN(or woman)");
+                        break;
+                }
+                break;
+                case 5:
+                System.out.println("Okay, what kind of array do you wanna rotate? \n\t1.) An Incremental sqare array\n\t2.) A Random square array");
+
+                int choice5 = k.nextInt();
+                switch(choice5){
+                case 1:
+                    System.out.println(rotateL(size, genSqMtInc(size)));
+                    break;
+                case 2:
+                    System.out.println(rotateL(size, genSqMtRan(size)));
+                    break;
+                default:
+                    System.out.print("HAHAHA, FUNNY DUMMY MAN(or woman)");
+                    break;
+                }
+                break;
+                case 6:
+                    System.out.println("OKAY, sheesh");
+                    break;
+                default:
+                    System.out.println("I don't recall that being a choice.");
+                    break;
+            }
+            break; 
+        }while (cake == false);
+    }  
+    public static int [] genArrRan() {
+        Random r = new Random();
+            int[] randomArray = new int[10];
+            for (int i=0; i<randomArray.length; i++) {
+                randomArray[i] = r.nextInt(50) + 1;
+            }
+            return randomArray;
+    }
+    public static int [] genArrInc() {
+        int[] incArr = new int[10];
+        for (int i=0; i<incArr.length; i++) {
+            incArr[i] = i;
+        }
+        return incArr;
+    }
+    public static int[][] genSqMtRan(int s) {
+        int[][] newArr = new int[s][s];
+        for (int i=0; i<newArr.length; i++){
+            for (int j=0; j<newArr[i].length; j++) {
+                newArr[i][j] = r.nextInt(50)+1;
+            }
+        }
+        return newArr;
+    }
+    public static int[][] genSqMtInc(int s) {
+        int[][] newArr = new int[s][s];
+        int num = 0;
+        for (int i=0; i<newArr.length; i++){
+            for (int j=0; j<newArr[i].length; j++) {
+                newArr[i][j] = num++;
+            }
+        }
+        return newArr;
+    }
+    public static int[][] noSqArr(int s, int y) {
+        int[][] noSqArr = new int[s][y];
+        int num = 0;
+        for (int i=0; i<s; i++) {
+            for (int j=0; j<y; j++) {
+                noSqArr[i][j] = num++;
+            }
+        }
+        return noSqArr;
+    }
+    public static int traceOn(int[][] y) {
+        // the name is a meme, i could've resisted, i didn't
+        int trace = 0;
+        for (int i=0; i<y.length; i++) {
+            trace = trace + y[i][i];
+        }
+        return trace;
+    }
+    public static int[][] transArr(int[][] y) {
+        for(int i=0; i<y.length; i++){
+            for(int j=0; j<y[i].length; j++){
+                System.out.print(y[j][i] + " ");
+                y[i][j] = y[j][i];
+            }
+            System.out.println();
+        }
+        return y;
+    }
+    public static int[][] rotateR (int s,int[][] y) {
+        int[][] spunArr = new int[s+1][s+1];
+        for(int i=s-1; i>-1; i--){
+            for(int j=0; j<s; j++){
+                spunArr[i][s-j] = y[j][i];
+            }
+        } 
+        return spunArr; 
+    }
+    public static int[][] rotateL (int s, int[][] y) {
+        int[][] spunArr = new int[s+1][s+1];
+       for(int E=0; E<3;E++) {
+            for(int i=s-1; i>-1; i--){
+                for(int j=0; j<s; j++){
+                    spunArr[i][s-j] = y[j][i];
+                }
+            }
+        }
+        return spunArr; 
+    }
+}
